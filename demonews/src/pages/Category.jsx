@@ -1,5 +1,11 @@
+import MainLayout from "../layouts/MainLayout";
+
 function Category() {
-  return <h1>Category Page</h1>;
+  return (
+    <MainLayout>
+      <h1>Category Page</h1>
+    </MainLayout>
+  );
 }
 
 export default Category;

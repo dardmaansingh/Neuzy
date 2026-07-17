@@ -1,5 +1,11 @@
+import MainLayout from "../layouts/MainLayout";
+
 function Bookmark() {
-    return <h1>Bookmark Page</h1>;
+  return (
+    <MainLayout>
+      <h1>Bookmark Page</h1>
+    </MainLayout>
+  );
 }
 
 export default Bookmark;

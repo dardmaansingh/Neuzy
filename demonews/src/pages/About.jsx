@@ -1,5 +1,11 @@
+import MainLayout from "../layouts/MainLayout";
+
 function About() {
-  return <h1>About Page</h1>;
+  return (
+    <MainLayout>
+      <h1>About Page</h1>
+    </MainLayout>
+  );
 }
 
 export default About;

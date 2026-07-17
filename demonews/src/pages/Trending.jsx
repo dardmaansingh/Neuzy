@@ -1,5 +1,11 @@
+import MainLayout from "../layouts/MainLayout";
+
 function Trending() {
-  return <h1>Trending News</h1>;
+  return (
+    <MainLayout>
+      <h1>Trending News</h1>
+    </MainLayout>
+  );
 }
 
 export default Trending;
