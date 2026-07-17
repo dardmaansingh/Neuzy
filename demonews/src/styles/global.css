@@ -1,0 +1,87 @@
+/* Google Font */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@700&display=swap");
+
+/* Reset */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Theme Variables */
+
+:root{
+
+    --primary:#d62828;
+    --secondary:#003049;
+
+    --background:#f8f9fa;
+
+    --white:#ffffff;
+
+    --black:#111111;
+
+    --gray:#6b7280;
+
+    --border:#e5e7eb;
+
+    --radius:12px;
+
+    --transition:.3s ease;
+
+    --shadow:0 5px 20px rgba(0,0,0,.08);
+
+}
+
+/* Base */
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    font-family:"Inter",sans-serif;
+
+    background:var(--background);
+
+    color:var(--black);
+
+    line-height:1.6;
+
+}
+
+a{
+
+    text-decoration:none;
+
+    color:inherit;
+
+}
+
+img{
+
+    width:100%;
+
+    display:block;
+
+}
+
+button{
+
+    cursor:pointer;
+
+    border:none;
+
+    transition:var(--transition);
+
+}
+
+input{
+
+    font-family:inherit;
+
+}
