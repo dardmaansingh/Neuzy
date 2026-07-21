@@ -1,32 +1,43 @@
+import { Link } from "react-router-dom";
+
 function HeroSection({ article }) {
   if (!article) return null;
 
+  const articleId = article.article_id || article.title;
+
   return (
-    <section>
-      <h1>Breaking News</h1>
+    <section className="hero">
+      <div className="hero-image">
+        <Link to={`/article/${encodeURIComponent(articleId)}`} state={{ article }}>
+          <img
+            src={
+              article.image_url ||
+              "https://placehold.co/900x500?text=No+Image"
+            }
+            alt={article.title}
+          />
+        </Link>
+      </div>
 
-      <img
-        src={
-          article.image_url ||
-          "https://placehold.co/900x500?text=No+Image"
-        }
-        alt={article.title}
-        width="600"
-      />
+      <div className="hero-content">
+        <span className="hero-tag">Breaking News</span>
 
-      <h2>{article.title}</h2>
+        <h2 className="hero-title">
+          <Link to={`/article/${encodeURIComponent(articleId)}`} state={{ article }}>
+            {article.title}
+          </Link>
+        </h2>
 
-      <p>{article.description}</p>
+        <p className="hero-description">{article.description}</p>
 
-      <a
-        href={article.link}
-        target="_blank"
-        rel="noreferrer"
-      >
-        Read Full Story
-      </a>
-
-      <hr />
+        <Link
+          to={`/article/${encodeURIComponent(articleId)}`}
+          state={{ article }}
+          className="hero-link"
+        >
+          Read Full Story →
+        </Link>
+      </div>
     </section>
   );
 }

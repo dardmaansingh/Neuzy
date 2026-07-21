@@ -1,43 +1,44 @@
+import { Link } from "react-router-dom";
+
 function FeaturedArticle({ article }) {
   if (!article) return null;
 
+  const articleId = article.article_id || article.title;
+
   return (
     <section className="featured">
-
       <div className="featured-header">
-
         <h2>Editor's Pick</h2>
-
       </div>
 
       <article className="featured-card">
-
         <div className="featured-image">
-
-          <img
-            src={
-              article.image_url ||
-              "https://placehold.co/800x500?text=No+Image"
-            }
-            alt={article.title}
-          />
-
+          <Link to={`/article/${encodeURIComponent(articleId)}`} state={{ article }}>
+            <img
+              src={
+                article.image_url ||
+                "https://placehold.co/800x500?text=No+Image"
+              }
+              alt={article.title}
+            />
+          </Link>
         </div>
+
         <div className="featured-content">
-          <h3>{article.title}</h3>
+          <h3>
+            <Link to={`/article/${encodeURIComponent(articleId)}`} state={{ article }}>
+              {article.title}
+            </Link>
+          </h3>
           <p>{article.description}</p>
-          <a
-            href={article.link}
-            target="_blank"
-            rel="noreferrer"
+          <Link
+            to={`/article/${encodeURIComponent(articleId)}`}
+            state={{ article }}
           >
             Read Story →
-          </a>
-
+          </Link>
         </div>
-
       </article>
-
     </section>
   );
 }

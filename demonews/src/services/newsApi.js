@@ -6,7 +6,6 @@ const API = axios.create({
   baseURL: "https://newsdata.io/api/1",
 });
 
-
 export const getTopNews = async () => {
   const response = await API.get("/latest", {
     params: {
@@ -20,22 +19,24 @@ export const getTopNews = async () => {
   return response.data;
 };
 
-
 export const getCategoryNews = async (category) => {
+  const formattedCategory = !category || category === "general" ? "top" : category.toLowerCase();
+
   const response = await API.get("/latest", {
     params: {
       apikey: apiKey,
       language: "en",
       country: "us",
-      category,
+      category: formattedCategory,
     },
   });
 
   return response.data;
 };
 
-
 export const searchNews = async (query) => {
+  if (!query || !query.trim()) return [];
+
   const response = await API.get("/latest", {
     params: {
       apikey: apiKey,
@@ -44,5 +45,5 @@ export const searchNews = async (query) => {
     },
   });
 
-  return response.data;
+  return response.data.results || [];
 };
