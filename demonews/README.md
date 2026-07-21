@@ -1,6 +1,6 @@
 # Neuzy 📰
 
-A modern, interview-ready React news application built with React 19, Vite, Tailwind CSS v4, and the NewsData.io API.
+A modern, React news application.
 
 ---
 
@@ -19,7 +19,6 @@ A modern, interview-ready React news application built with React 19, Vite, Tail
 ## 🛠️ Tech Stack
 
 - **Framework:** React 19 + Vite
-- **Routing:** React Router DOM (v7)
 - **HTTP Client:** Axios
 - **Styling:** Tailwind CSS v4
 - **State & Persistence:** Context API + LocalStorage
