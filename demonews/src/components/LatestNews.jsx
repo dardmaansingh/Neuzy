@@ -4,25 +4,19 @@ function LatestNews({ articles }) {
   if (!articles?.length) return null;
 
   return (
-    <section className="latest-news">
-
-      <div className="latest-header">
-
-        <h2>Latest News</h2>
-
+    <section className="my-12">
+      <div className="mb-6">
+        <h2 className="font-serif text-2xl md:text-3xl font-bold">Latest News</h2>
       </div>
 
-      <div className="latest-grid">
-
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {articles.map((article) => (
           <NewsCard
             key={article.article_id}
             article={article}
           />
         ))}
-
       </div>
-
     </section>
   );
 }

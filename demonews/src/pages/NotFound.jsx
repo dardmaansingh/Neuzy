@@ -4,13 +4,16 @@ import MainLayout from "../layouts/MainLayout";
 function NotFound() {
   return (
     <MainLayout>
-      <div className="error error-padding-xlarge">
-        <h1 className="error-404-code">404</h1>
-        <h2>Page Not Found</h2>
-        <p className="error-margin-text">
+      <div className="text-center py-24 px-4">
+        <h1 className="text-7xl font-serif font-bold text-[#b30000] mb-2">404</h1>
+        <h2 className="font-serif text-2xl font-bold mb-3">Page Not Found</h2>
+        <p className="text-[var(--text-muted)] text-base mb-6">
           The page you are looking for does not exist or has been moved.
         </p>
-        <Link to="/" className="error-404-btn">
+        <Link
+          to="/"
+          className="inline-block bg-[#b30000] hover:bg-[#8f0000] text-white font-semibold px-6 py-3 rounded shadow transition-colors"
+        >
           Return to Homepage
         </Link>
       </div>

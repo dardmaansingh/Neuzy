@@ -38,7 +38,6 @@ function Category() {
     ? category.charAt(0).toUpperCase() + category.slice(1)
     : "Category";
 
-  // Calculate pagination slice
   const indexOfLastArticle = currentPage * articlesPerPage;
   const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
   const currentArticles = articles.slice(indexOfFirstArticle, indexOfLastArticle);
@@ -46,9 +45,9 @@ function Category() {
 
   return (
     <MainLayout>
-      <div className="category-page page-container">
-        <div className="category-header page-header">
-          <h1 className="page-title">
+      <div className="py-6">
+        <div className="mb-8 border-b-2 border-[var(--border-color)] pb-3">
+          <h1 className="font-serif text-3xl md:text-4xl font-bold">
             {formattedCategory} News
           </h1>
         </div>
@@ -58,15 +57,15 @@ function Category() {
         {error && <ErrorMessage message={error} onRetry={fetchCategoryArticles} />}
 
         {!loading && !error && articles.length === 0 && (
-          <div className="error">
-            <h2>No Articles Found</h2>
-            <p>No news available for the "{formattedCategory}" category right now.</p>
+          <div className="text-center py-16 px-4">
+            <h2 className="font-serif text-2xl font-bold text-[#b30000] mb-2">No Articles Found</h2>
+            <p className="text-[var(--text-muted)]">No news available for the "{formattedCategory}" category right now.</p>
           </div>
         )}
 
         {!loading && !error && currentArticles.length > 0 && (
           <>
-            <div className="latest-grid">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {currentArticles.map((article, idx) => (
                 <NewsCard key={article.article_id || idx} article={article} />
               ))}
