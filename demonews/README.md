@@ -1,16 +1,47 @@
-# React + Vite
+# Neuzy 📰
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, interview-ready React news application built with React 19, Vite, Tailwind CSS v4, and the NewsData.io API.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## ⚡ Features
 
-## React Compiler
+- **Breaking & Top Headlines:** Live headlines fetched from NewsData API.
+- **Category Navigation:** Filter news by Business, Technology, Sports, Entertainment, Health, and Science.
+- **Search & Debouncing:** Instant search with built-in `useDebounce` hook to reduce API requests.
+- **Detailed Article View:** Full story page with publisher details, publishing date, and related articles sidebar.
+- **Bookmarks & Offline Persistence:** Save articles locally using React Context API & LocalStorage.
+- **Dark / Light Theme Toggle:** Instant theme switching with custom CSS properties & Tailwind CSS.
+- **Responsive Newspaper UI:** Mobile-first editorial design built with Tailwind CSS v4.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Framework:** React 19 + Vite
+- **Routing:** React Router DOM (v7)
+- **HTTP Client:** Axios
+- **Styling:** Tailwind CSS v4
+- **State & Persistence:** Context API + LocalStorage
+- **Data Provider:** NewsData.io API
+
+---
+
+## 📁 Project Structure
+
+```text
+src/
+├── components/      # Reusable UI components (Navbar, NewsCard, Sidebar, etc.)
+├── context/         # Context Providers (BookmarkContext, ThemeContext)
+├── hooks/           # Custom React Hooks (useDebounce, useFetch, useLocalStorage, etc.)
+├── layouts/         # MainLayout wrapper
+├── pages/           # Route views (Home, Category, Article, Search, Bookmark, etc.)
+├── services/        # Axios API client (newsApi.js)
+├── index.css        # Tailwind CSS v4 setup & theme variables
+├── App.jsx          # Route configuration
+└── main.jsx         # App root & providers
+```
+
+---
+
+
