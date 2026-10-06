@@ -21,12 +21,15 @@ function Article() {
         const data = await getTopNews();
         const results = data.results || [];
 
-        if (!article) {
-          const found = results.find(
-            (item) => item.article_id === id || encodeURIComponent(item.title) === id
-          );
-          setArticle(found || results[0] || null);
-        }
+        setArticle((prev) => {
+          if (!prev) {
+            const found = results.find(
+              (item) => item.article_id === id || encodeURIComponent(item.title) === id
+            );
+            return found || results[0] || null;
+          }
+          return prev;
+        });
 
         setRelatedArticles(results.filter((item) => item.article_id !== id).slice(0, 5));
       } catch (err) {

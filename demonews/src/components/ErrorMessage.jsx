@@ -1,5 +1,3 @@
-import React from "react";
-
 function ErrorMessage({ message = "Something went wrong while fetching news.", onRetry }) {
   return (
     <div className="text-center py-16 px-4">

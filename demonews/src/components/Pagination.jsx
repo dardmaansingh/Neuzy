@@ -1,5 +1,3 @@
-import React from "react";
-
 function Pagination({ currentPage = 1, totalPages = 5, onPageChange }) {
   return (
     <div className="flex justify-center items-center gap-2 my-12">

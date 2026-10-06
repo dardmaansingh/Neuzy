@@ -24,7 +24,27 @@ function Trending() {
   };
 
   useEffect(() => {
-    fetchTrending();
+    let ignore = false;
+    getTopNews()
+      .then((data) => {
+        if (!ignore) {
+          setArticles(data.results || []);
+        }
+      })
+      .catch((err) => {
+        if (!ignore) {
+          setError(err.message || "Failed to fetch trending news.");
+        }
+      })
+      .finally(() => {
+        if (!ignore) {
+          setLoading(false);
+        }
+      });
+
+    return () => {
+      ignore = true;
+    };
   }, []);
 
   return (

@@ -14,26 +14,51 @@ function Search() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const fetchResults = async () => {
+  const [searchedQuery, setSearchedQuery] = useState(query);
+
+  if (query !== searchedQuery) {
+    setSearchedQuery(query);
+    setLoading(Boolean(query));
+    setError(null);
     if (!query) {
       setArticles([]);
-      return;
     }
+  }
 
+  const handleRetry = () => {
+    if (!query) return;
     setLoading(true);
     setError(null);
-    try {
-      const results = await searchNews(query);
-      setArticles(results);
-    } catch (err) {
-      setError(err.message || "Failed to search news articles.");
-    } finally {
-      setLoading(false);
-    }
+    searchNews(query)
+      .then((results) => setArticles(results))
+      .catch((err) => setError(err.message || "Failed to search news articles."))
+      .finally(() => setLoading(false));
   };
 
   useEffect(() => {
-    fetchResults();
+    if (!query) return;
+
+    let ignore = false;
+    searchNews(query)
+      .then((results) => {
+        if (!ignore) {
+          setArticles(results);
+        }
+      })
+      .catch((err) => {
+        if (!ignore) {
+          setError(err.message || "Failed to search news articles.");
+        }
+      })
+      .finally(() => {
+        if (!ignore) {
+          setLoading(false);
+        }
+      });
+
+    return () => {
+      ignore = true;
+    };
   }, [query]);
 
   return (
@@ -51,7 +76,7 @@ function Search() {
 
         {loading && <LoadingSkeleton count={6} />}
 
-        {error && <ErrorMessage message={error} onRetry={fetchResults} />}
+        {error && <ErrorMessage message={error} onRetry={handleRetry} />}
 
         {!loading && !error && query && articles.length === 0 && (
           <div className="text-center py-16 px-4">

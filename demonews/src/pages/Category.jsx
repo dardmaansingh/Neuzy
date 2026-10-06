@@ -16,22 +16,46 @@ function Category() {
 
   const articlesPerPage = 6;
 
-  const fetchCategoryArticles = async () => {
+  const [prevCategory, setPrevCategory] = useState(category);
+
+  if (category !== prevCategory) {
+    setPrevCategory(category);
+    setCurrentPage(1);
     setLoading(true);
     setError(null);
-    try {
-      const data = await getCategoryNews(category);
-      setArticles(data.results || []);
-    } catch (err) {
-      setError(err.message || `Failed to fetch ${category} news.`);
-    } finally {
-      setLoading(false);
-    }
+  }
+
+  const handleRetry = () => {
+    setLoading(true);
+    setError(null);
+    getCategoryNews(category)
+      .then((data) => setArticles(data.results || []))
+      .catch((err) => setError(err.message || `Failed to fetch ${category} news.`))
+      .finally(() => setLoading(false));
   };
 
   useEffect(() => {
-    setCurrentPage(1);
-    fetchCategoryArticles();
+    let ignore = false;
+    getCategoryNews(category)
+      .then((data) => {
+        if (!ignore) {
+          setArticles(data.results || []);
+        }
+      })
+      .catch((err) => {
+        if (!ignore) {
+          setError(err.message || `Failed to fetch ${category} news.`);
+        }
+      })
+      .finally(() => {
+        if (!ignore) {
+          setLoading(false);
+        }
+      });
+
+    return () => {
+      ignore = true;
+    };
   }, [category]);
 
   const formattedCategory = category
@@ -54,7 +78,7 @@ function Category() {
 
         {loading && <LoadingSkeleton count={6} />}
 
-        {error && <ErrorMessage message={error} onRetry={fetchCategoryArticles} />}
+        {error && <ErrorMessage message={error} onRetry={handleRetry} />}
 
         {!loading && !error && articles.length === 0 && (
           <div className="text-center py-16 px-4">
