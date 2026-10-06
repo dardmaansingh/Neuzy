@@ -1,3 +1,5 @@
+Working on the rendering issue, Will be back soon
+
 # Neuzy 📰
 
 A modern, React news application.
